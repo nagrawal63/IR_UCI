@@ -19,10 +19,19 @@ def tokenize(filepath):
 def computeWordFrequencies(tokensList):
     if len(tokensList) == 0:
         return {}
+    tokenMap = dict()
+    for token in tokensList:
+        if token not in tokenMap:
+            tokenMap[token] = 1
+        else:
+            tokenMap[token] += 1
 
+    return tokenMap
 
 if __name__ == '__main__':
     # print_hi('PyCharm')
     tokens = tokenize(sys.argv[1])
     print(len(tokens))
     print(tokens)
+    tokenMap = computeWordFrequencies(tokens)
+    print(tokenMap)
