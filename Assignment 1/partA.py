@@ -1,9 +1,6 @@
 #!/usr/bin/python3
 import sys
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
 def tokenize(filepath):
     tokens = list()
@@ -28,11 +25,15 @@ def computeWordFrequencies(tokensList):
 
     return tokenMap
 
+
 def printFrequencyMap(frequenciesMap):
     for key, value in frequenciesMap.items():
         print("<token>{}<freq>{}".format(key, value))
 
+
 if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        sys.exit(0)
     # print_hi('PyCharm')
     tokens = tokenize(sys.argv[1])
     # print(len(tokens))
