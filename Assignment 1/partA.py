@@ -28,10 +28,15 @@ def computeWordFrequencies(tokensList):
 
     return tokenMap
 
+def printFrequencyMap(frequenciesMap):
+    for key, value in frequenciesMap.items():
+        print("<token>{}<freq>{}".format(key, value))
+
 if __name__ == '__main__':
     # print_hi('PyCharm')
     tokens = tokenize(sys.argv[1])
-    print(len(tokens))
-    print(tokens)
+    # print(len(tokens))
+    # print(tokens)
     tokenMap = computeWordFrequencies(tokens)
-    print(tokenMap)
+    # print(tokenMap)
+    printFrequencyMap(tokenMap)
