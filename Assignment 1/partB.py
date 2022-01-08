@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import re
 import sys
 import partA as tokenizer
 
@@ -45,9 +46,10 @@ def getCommonToken(file1: str, file2: str):
     try:
         with open(file2, 'r') as f:
             for line in f:
-                for word in line.split():
-                    if word.isalnum() and word.upper() in tokensMap:
+                for word in re.findall(r'\w+', line):
+                    if word.upper() in tokensMap:
                         num_of_common_tokens += 1
+                        # print(word.upper())
                         # Remove entry from the map so that there is no need to keep track of
                         # multiple occurrences
                         del tokensMap[word.upper()]

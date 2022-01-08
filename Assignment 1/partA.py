@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import re
 import sys
 
 
@@ -9,14 +10,18 @@ def tokenize(filepath: str):
 
     try:
         with open(filepath, 'r') as f:
+            # for line in f:
+            #     for word in line.split():
+            #         if word.isalnum():
+            #             tokens.append(word.upper())
             for line in f:
-                for word in line.split():
-                    if word.isalnum():
-                        tokens.append(word.upper())
+                for word in re.finditer(r'\w+', line):
+                    tokens.append(word.group().upper())
     except Exception as e:
         print(e)
         return tokens
     return tokens
+
 
 def computeWordFrequencies(tokensList: list):
     if len(tokensList) == 0:
