@@ -46,13 +46,14 @@ def getCommonToken(file1: str, file2: str):
     try:
         with open(file2, 'r') as f:
             for line in f:
-                for word in re.findall(r'\w+', line):
-                    if word.upper() in tokensMap:
+                # for word in re.findall(r'\w+', line):
+                # match either words or either of the special characters with regex
+                for word in re.findall(r'([a-zA-Z0-9@#*&\']+|[!^$(){}\[\]><:;."])', line):
+                    if word.lower() in tokensMap:
                         num_of_common_tokens += 1
-                        # print(word.upper())
                         # Remove entry from the map so that there is no need to keep track of
                         # multiple occurrences
-                        del tokensMap[word.upper()]
+                        del tokensMap[word.lower()]
     except Exception as e:
         print(e)
         sys.exit(0)
@@ -63,7 +64,7 @@ def getCommonToken(file1: str, file2: str):
     # with open(file2, 'r') as f:
     #     for line in f:
     #         for word in line.split():
-    #             if word.isalnum() and trieOfTokens.findInTrie(word.upper(), True):
+    #             if word.isalnum() and trieOfTokens.findInTrie(word.lower(), True):
     #                 num_of_common_tokens += 1
 
     return num_of_common_tokens

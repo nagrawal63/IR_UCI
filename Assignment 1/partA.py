@@ -13,10 +13,12 @@ def tokenize(filepath: str):
             # for line in f:
             #     for word in line.split():
             #         if word.isalnum():
-            #             tokens.append(word.upper())
+            #             tokens.append(word.lower())
             for line in f:
-                for word in re.finditer(r'\w+', line):
-                    tokens.append(word.group().upper())
+                # for word in re.finditer(r'\w+', line):
+                #match either words or either of the special characters with regex
+                for word in re.finditer(r'([a-zA-Z0-9@#*&\']+|[!^$(){}\[\]><:;."])', line):
+                    tokens.append(word.group().lower())
     except Exception as e:
         print(e)
         return tokens
